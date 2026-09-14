@@ -1531,7 +1531,7 @@ class="btn-orcamento">
         </p>
 
         <h2>
-            Barcos Disponiveis Agora
+            Thunder Pronta Entrega
         </h2>
 
         <span>
@@ -1926,7 +1926,7 @@ class="btn-orcamento">
         aria-label="Ver barcos disponíveis para pronta entrega">
 
         <i class="bi bi-lightning-charge-fill"></i>
-        <span>Disponíveis Agora</span>
+        <span>Thunder Pronta Entrega</span>
 
     </a>
 
@@ -1988,7 +1988,7 @@ class="btn-orcamento">
             <p><i class="bi bi-whatsapp"></i> (47) 99994-9351</p>
             <p><i class="bi bi-instagram"></i>@thunderfishoficial</p>
             <p><i class="bi bi-envelope"></i>@comercial@thunderfish.com.br</p>
-            <p><i class="bi bi-geo-alt"></i> Rua Pedro Ferreira 144, 4º andar, Sala 404 - Itajaí - Centro - 88301-030</p>
+            <p><i class="bi bi-geo-alt"></i> Rua Pedro Ferreira 155, 4º andar, Sala 411 - Itajaí - Centro - 88301-030</p>
 
         </div>
 
@@ -2382,17 +2382,42 @@ document.querySelectorAll(".imagem-principal").forEach(card=>{
 
 });
 
+
 document.querySelectorAll("[data-galeria]").forEach(galeria=>{
 
-    const proximo=galeria.querySelector(".proximo");
+    const miniaturas=galeria.querySelector(".miniaturas");
 
-    setInterval(()=>{
+    if(!miniaturas) return;
 
-        proximo.click();
+    const thumbs=miniaturas.querySelectorAll(".thumb");
 
-    },6000);
+    const total=thumbs.length;
+
+    if(total>9){
+
+        const restantes=total-9;
+
+        const nona=thumbs[8];
+
+        const wrap=document.createElement("span");
+        wrap.className="thumb-mais-wrap";
+
+        nona.parentNode.insertBefore(wrap,nona);
+        wrap.appendChild(nona);
+
+        const label=document.createElement("span");
+        label.className="thumb-mais-label";
+        label.textContent="+"+restantes;
+        wrap.appendChild(label);
+
+        for(let i=9;i<total;i++){
+            thumbs[i].style.display="none";
+        }
+
+    }
 
 });
+
 </script>
 
 </body>

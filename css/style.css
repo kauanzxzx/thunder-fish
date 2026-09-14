@@ -2691,6 +2691,8 @@ MOBILE
 
     display:flex;
 
+    flex-wrap:wrap;
+
     gap:12px;
 
 }
@@ -6322,4 +6324,64 @@ body.tema-escuro .pronta-entrega-tab{
         50%{ box-shadow:0 14px 34px rgba(244,196,3,.65); }
     }
 
+}
+
+/* ============================================================
+   MINIATURAS - LIMITE DE 9 VISIVEIS
+   Quando o catalogo tem mais de 9 fotos, a 9a miniatura fica
+   borrada com um "+N" por cima (N = fotos restantes) em vez de
+   todas as miniaturas ficarem em uma linha so e vazarem por
+   tras dos cardzinhos de caracteristicas.
+============================================================ */
+
+.thumb-mais-wrap{
+    position:relative;
+    display:inline-block;
+    border-radius:14px;
+    overflow:hidden;
+    cursor:pointer;
+}
+
+.thumb-mais-wrap .thumb{
+    filter:blur(3px) brightness(.55);
+}
+
+.thumb-mais-label{
+    position:absolute;
+    inset:0;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    color:#fff;
+    font-weight:800;
+    font-size:1.05rem;
+
+    background:rgba(0,0,0,.2);
+    pointer-events:none;
+}
+
+@media (max-width:700px){
+
+    .thumb-mais-label{
+        font-size:.9rem;
+    }
+
+}
+
+
+/* ============================================================
+   CORRECAO - HOVER DO CABECALHO DOS ACCORDIONS (Opcionais /
+   Itens de Fabrica) NO TEMA ESCURO
+   A regra ".accordion summary:hover" original usa um fundo
+   quase branco (#f8fbfd) fixo, pensado para o tema claro. No
+   tema escuro o texto do cabecalho fica branco, entao ao passar
+   o mouse ficava branco sobre quase-branco (ilegivel). Aqui
+   sobrescrevemos apenas para o tema escuro, com um destaque
+   sutil que combina com o fundo escuro do card.
+============================================================ */
+
+body.tema-escuro .accordion summary:hover{
+    background:rgba(255,255,255,.06);
 }
