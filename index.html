@@ -35,74 +35,76 @@
 <header class="header">
 
     <nav class="nav-bar">
-
+ 
         <a href="index.html" class="logo" aria-label="Thunderfish - Página inicial">
-
+ 
     <span class="logo-emblem">
-        <span class="logo-bolt">ϟ</span>
+        <svg class="logo-bolt" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M13 2 3 14h7l-1 8 10-12h-7l1-8z"/>
+        </svg>
         <span class="logo-wave"></span>
     </span>
-
+ 
     <span class="logo-content">
         <span class="logo-name">
             <span class="logo-thunder">Thunder</span><span class="logo-fish">fish</span>
         </span>
-
+ 
         <span class="logo-subtitle">
             EMBARCAÇÕES PREMIUM
         </span>
     </span>
-
+ 
 </a>
-
+ 
         <div class="navegacao">
             <a href="#sobre">Sobre Nós</a>
             <a href="#barcos">Barcos</a>
             <a href="#contato">Contato</a>
         </div>
-
+ 
         <div class="nav-actions">
-
+ 
     <button
         class="theme-toggle"
         id="themeToggle"
         onclick="alternarTema()"
         aria-label="Alternar tema">
-
+ 
         <span class="theme-toggle-ball">
             <i class="bi bi-sun"></i>
         </span>
-
+ 
     </button>
-
+ 
     <a
         href="https://www.instagram.com/thunderfishoficial/"
         class="btn-instagram"
         target="_blank">
-
+ 
         <i class="bi bi-instagram"></i>
-
+ 
     </a>
-
+ 
     <a
         href=""
         class="btn-topo"
         target="_blank">
-
+ 
         <i class="bi bi-whatsapp"></i>
         WhatsApp
     </a>
-
+ 
     <button
         class="menu-toggle"
         onclick="abrirMenuMobile()">
-
+ 
         <i class="bi bi-list"></i>
-
+ 
     </button>
-
+ 
 </div>
-
+ 
     </nav>
 
 </header>
@@ -335,6 +337,8 @@
 
             <img class="imagem-principal-img" src="lancamento.jpg">
 
+            <video class="imagem-principal-video" controls muted playsinline></video>
+
             <button class="btn-slide proximo">
                 <i class="bi bi-chevron-right"></i>
             </button>
@@ -357,7 +361,10 @@
             <img class="thumb ativa" src="img/barcos/blend/blend-10.jpeg">
             <img class="thumb ativa" src="img/barcos/blend/blend-11.jpeg">
             <img class="thumb ativa" src="img/barcos/blend/blend-5.jpeg">
+            <img class="thumb" src="video/cta-barco.mp4" data-video="video/cta-barco.mp4">
 
+            <!-- Video: src = imagem de capa do video / data-video = caminho do arquivo de video -->
+            <!-- <img class="thumb" src="img/barcos/blend/blend-video-capa.jpg" data-video="img/barcos/blend/blend-video.mp4"> -->
 
         </div>
 
@@ -743,6 +750,8 @@ class="btn-orcamento">
 
             <img class="imagem-principal-img" src="img/barcos/18/1.jpg">
 
+            <video class="imagem-principal-video" controls muted playsinline></video>
+
             <button class="btn-slide proximo">
                 <i class="bi bi-chevron-right"></i>
             </button>
@@ -757,6 +766,9 @@ class="btn-orcamento">
             <img class="thumb" src="img/barcos/18/gringa-2.jpeg">
             <img class="thumb" src="img/barcos/18/gringa-3.jpeg">
             <img class="thumb" src="img/barcos/18/gringa-4.jpeg">
+
+            <!-- Video: src = imagem de capa do video / data-video = caminho do arquivo de video -->
+            <!-- <img class="thumb" src="img/barcos/18/gringa-video-capa.jpg" data-video="img/barcos/18/gringa-video.mp4"> -->
 
         </div>
 
@@ -1026,6 +1038,8 @@ class="btn-orcamento">
 
             <img class="imagem-principal-img" src="img/barcos/13/1.jpg">
 
+            <video class="imagem-principal-video" controls muted playsinline></video>
+
             <button class="btn-slide proximo">
                 <i class="bi bi-chevron-right"></i>
             </button>
@@ -1047,6 +1061,9 @@ class="btn-orcamento">
             <img class="thumb" src="img/barcos/13/9.jpg">
             <img class="thumb" src="img/barcos/13/10.jpg">
             <img class="thumb" src="img/barcos/13/11.jpg">
+
+            <!-- Video: src = imagem de capa do video / data-video = caminho do arquivo de video -->
+            <!-- <img class="thumb" src="img/barcos/13/video-capa.jpg" data-video="img/barcos/13/video.mp4"> -->
 
         </div>
 
@@ -1273,6 +1290,8 @@ class="btn-orcamento">
 
             <img class="imagem-principal-img" src="img/barcos/araguaia/1.jpg">
 
+            <video class="imagem-principal-video" controls muted playsinline></video>
+
             <button class="btn-slide proximo">
                 <i class="bi bi-chevron-right"></i>
             </button>
@@ -1286,6 +1305,9 @@ class="btn-orcamento">
             <img class="thumb ativa" src="img/barcos/araguaia/araguaia-1.jpg">
             <img class="thumb" src="img/barcos/araguaia/araguaia-2.jpg">
             <img class="thumb" src="img/barcos/araguaia/araguaia-3.jpg">
+
+            <!-- Video: src = imagem de capa do video / data-video = caminho do arquivo de video -->
+            <!-- <img class="thumb" src="img/barcos/araguaia/video-capa.jpg" data-video="img/barcos/araguaia/video.mp4"> -->
 
         </div>
 
@@ -1556,23 +1578,63 @@ class="btn-orcamento">
 
         <div class="pronta-entrega-card" data-aos="fade-up">
 
-            <div class="pronta-entrega-imagem">
+            <!-- ================= GALERIA =================
+                 Mesmo modelo de galeria usado no catalogo.
+                 Para adicionar mais fotos: copie a linha do
+                 "thumb" abaixo e troque o "src" pela nova imagem.
+                 Para adicionar um video: veja o exemplo comentado
+                 mais abaixo (atributo data-video).
+            ============================================= -->
 
-                <img src="pronta-entrega-1.jpg" alt="Barco disponivel para pronta entrega">
+            <div class="pronta-entrega-galeria barco-galeria galeria" data-galeria>
 
-                <span class="pronta-entrega-badge">
-                    <i class="bi bi-check-circle-fill"></i>
-                    Pronta Entrega
-                </span>
+                <div class="imagem-principal pronta-entrega-imagem">
+
+                    <button class="btn-slide anterior">
+                        <i class="bi bi-chevron-left"></i>
+                    </button>
+
+                    <img class="imagem-principal-img" src="img/barcos/pronta-entrega/thunder-13-pronta-entrega-1.jpeg" alt="Barco disponivel para pronta entrega">
+
+                    <video class="imagem-principal-video" controls muted playsinline></video>
+
+                    <button class="btn-slide proximo">
+                        <i class="bi bi-chevron-right"></i>
+                    </button>
+
+                    <span class="pronta-entrega-badge">
+                        <i class="bi bi-check-circle-fill"></i>
+                        Pronta Entrega
+                    </span>
+
+                    <span class="contador">1 / 1</span>
+
+                </div>
+
+                <div class="miniaturas">
+
+                    <img class="thumb ativa" src="img/barcos/pronta-entrega/thunder-13-pronta-entrega-1.jpeg">
+                    <img class="thumb ativa" src="img/barcos/pronta-entrega/thunder-13-pronta-entrega-2.jpeg">
+                    <img class="thumb ativa" src="img/barcos/pronta-entrega/thunder-13-pronta-entrega-3.jpeg">
+                    <img class="thumb ativa" src="img/barcos/pronta-entrega/thunder-13-pronta-entrega-4.jpeg">
+
+                    <!-- Mais fotos: copie a linha acima e troque o src -->
+                    <!-- <img class="thumb" src="img/barcos/pronta-entrega/thunder-13-pronta-entrega-2.jpeg"> -->
+
+                    <!-- Video: src = imagem de capa do video / data-video = caminho do arquivo de video -->
+                    <!-- <img class="thumb" src="img/barcos/pronta-entrega/thunder-13-video-capa.jpg" data-video="img/barcos/pronta-entrega/thunder-13-video.mp4"> -->
+
+                </div>
 
             </div>
 
             <div class="pronta-entrega-info">
 
-                <h3>Definir</h3>
+                <h3>Thunder 13 Pés Super Edition</h3>
 
                 <p class="pronta-entrega-descricao">
-                    Definir
+                    Compacta, exclusiva e pronta para entregar. A Thunder Fish 13 Pés Super Edition reúne estilo, praticidade e diversão em uma edição especial feita para quem quer aproveitar ao máximo.
+
                 </p>
 
                 <div class="pronta-entrega-specs">
@@ -1580,24 +1642,24 @@ class="btn-orcamento">
                     <div class="spec-mini">
                         <div class="spec-mini-icon"><i class="bi bi-rulers"></i></div>
                         <span>Comprimento</span>
-                        <strong>Definir</strong>
+                        <strong>4 Metros</strong>
                     </div>
 
                     <div class="spec-mini">
                         <div class="spec-mini-icon"><i class="bi bi-people"></i></div>
                         <span>Passageiros</span>
-                        <strong>Definir</strong>
+                        <strong>1 + 3</strong>
                     </div>
 
                     <div class="spec-mini">
                         <div class="spec-mini-icon"><i class="bi bi-gear"></i></div>
                         <span>Motor</span>
-                        <strong>Definir</strong>
+                        <strong>30 a 50 HP</strong>
                     </div>
 
                 </div>
 
-                <a href="https://api.whatsapp.com/send?phone=5547999949351&text=Ol%C3%A1%21%20Tenho%20interesse%20em%20um%20barco%20dispon%C3%ADvel%20para%20pronta%20entrega.%20Gostaria%20de%20receber%20mais%20informa%C3%A7%C3%B5es." target="_blank" class="btn-orcamento btn-pronta-entrega">
+                <a href="https://api.whatsapp.com/send?phone=5547999949351&text=Ol%C3%A1%21+Tenho+interesse+na+Thunder+13+P%C3%A9s+Super+Edition%2C+%C3%A0+pronta+entrega.+Gostaria+de+receber+mais+informa%C3%A7%C3%B5es.&utm_source=chatgpt.com" target="_blank" class="btn-orcamento btn-pronta-entrega">
                     <i class="bi bi-whatsapp"></i>
                     Mais informacoes
                 </a>
@@ -1610,23 +1672,55 @@ class="btn-orcamento">
 
         <div class="pronta-entrega-card" data-aos="fade-up" data-aos-delay="150">
 
-            <div class="pronta-entrega-imagem">
+            <!-- ================= GALERIA ================= -->
 
-                <img src="pronta-entrega-2.jpg" alt="Barco disponivel para pronta entrega">
+            <div class="pronta-entrega-galeria barco-galeria galeria" data-galeria>
 
-                <span class="pronta-entrega-badge">
-                    <i class="bi bi-check-circle-fill"></i>
-                    Pronta Entrega
-                </span>
+                <div class="imagem-principal pronta-entrega-imagem">
+
+                    <button class="btn-slide anterior">
+                        <i class="bi bi-chevron-left"></i>
+                    </button>
+
+                    <img class="imagem-principal-img" src="pronta-entrega-2.jpg" alt="Barco disponivel para pronta entrega">
+
+                    <video class="imagem-principal-video" controls muted playsinline></video>
+
+                    <button class="btn-slide proximo">
+                        <i class="bi bi-chevron-right"></i>
+                    </button>
+
+                    <span class="pronta-entrega-badge">
+                        <i class="bi bi-check-circle-fill"></i>
+                        Pronta Entrega
+                    </span>
+
+                    <span class="contador">1 / 1</span>
+
+                </div>
+
+                <div class="miniaturas">
+
+                    <img class="thumb ativa" src="img/barcos/pronta-entrega/gringa-pronta-entrega.jpg">
+                    <img class="thumb ativa" src="img/barcos/pronta-entrega/gringa-pronta-entrega-2.jpg">
+                    <img class="thumb ativa" src="img/barcos/pronta-entrega/gringa-pronta-entrega-3.jpg">
+
+                    <!-- Mais fotos: copie a linha acima e troque o src -->
+                    <!-- <img class="thumb" src="pronta-entrega-2-foto2.jpg"> -->
+
+                    <!-- Video: src = imagem de capa do video / data-video = caminho do arquivo de video -->
+                    <!-- <img class="thumb" src="pronta-entrega-2-video-capa.jpg" data-video="pronta-entrega-2-video.mp4"> -->
+
+                </div>
 
             </div>
 
             <div class="pronta-entrega-info">
 
-                <h3>Definir</h3>
+                <h3>Thunder Gringa 18 Pés</h3>
 
                 <p class="pronta-entrega-descricao">
-                    Definir
+                    A escolha dos pescadores mais exigentes! A Thunder Gringa 18 Pés oferece amplo espaço interno, excelente desempenho e segurança para suas pescarias. Completa, na cor branca e à pronta entrega.
                 </p>
 
                 <div class="pronta-entrega-specs">
@@ -1634,24 +1728,24 @@ class="btn-orcamento">
                     <div class="spec-mini">
                         <div class="spec-mini-icon"><i class="bi bi-rulers"></i></div>
                         <span>Comprimento</span>
-                        <strong>Definir</strong>
+                        <strong>5,20 Metros</strong>
                     </div>
 
                     <div class="spec-mini">
                         <div class="spec-mini-icon"><i class="bi bi-people"></i></div>
                         <span>Passageiros</span>
-                        <strong>Definir</strong>
+                        <strong>1 + 5</strong>
                     </div>
 
                     <div class="spec-mini">
                         <div class="spec-mini-icon"><i class="bi bi-gear"></i></div>
                         <span>Motor</span>
-                        <strong>Definir</strong>
+                        <strong>60 a 150 HP</strong>
                     </div>
 
                 </div>
 
-                <a href="https://api.whatsapp.com/send?phone=5547999949351&text=Ol%C3%A1%21%20Tenho%20interesse%20em%20um%20barco%20dispon%C3%ADvel%20para%20pronta%20entrega.%20Gostaria%20de%20receber%20mais%20informa%C3%A7%C3%B5es." target="_blank" class="btn-orcamento btn-pronta-entrega">
+                <a href="https://api.whatsapp.com/send?phone=5547999949351&text=Ol%C3%A1%21+Tenho+interesse+na+Thunder+Gringa+18+P%C3%A9s%2C+na+cor+branca%2C+%C3%A0+pronta+entrega.+Gostaria+de+receber+mais+informa%C3%A7%C3%B5es.+&utm_source=chatgpt.com" target="_blank" class="btn-orcamento btn-pronta-entrega">
                     <i class="bi bi-whatsapp"></i>
                     Mais informacoes
                 </a>
@@ -1956,22 +2050,24 @@ class="btn-orcamento">
         <div>
 
             <a href="index.html" class="logo" aria-label="Thunderfish - Página inicial">
-
+ 
     <span class="logo-emblem">
-        <span class="logo-bolt">ϟ</span>
+        <svg class="logo-bolt" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M13 2 3 14h7l-1 8 10-12h-7l1-8z"/>
+        </svg>
         <span class="logo-wave"></span>
     </span>
-
+ 
     <span class="logo-content">
         <span class="logo-name">
             <span class="logo-thunder">Thunder</span><span class="logo-fish">fish</span>
         </span>
-
+ 
         <span class="logo-subtitle">
             EMBARCAÇÕES PREMIUM
         </span>
     </span>
-
+ 
 </a>
 
             <p>
@@ -2005,10 +2101,15 @@ class="btn-orcamento">
 
     <div class="footer-bottom">
 
-        <p>
-            Thunderfish © 2026 - Desenvolvido por Kauan Claudino.
-        </p>
-
+        <p style="white-space: nowrap;">
+    Thunderfish © 2026 - 
+    <a href="https://kauanwebdesigner.vercel.app/" 
+       target="_blank" 
+       rel="noopener noreferrer"
+       style="display: inline !important; white-space: nowrap; color: inherit; text-decoration: none;">
+        Desenvolvido por Kauan Claudino.
+    </a>
+</p>
     </div>
 
 </footer>
@@ -2278,10 +2379,34 @@ function fecharMenuMobile(){
 </script>
 
 <script>
+    // Envolve toda miniatura com data-video em um wrapper com icone de "play",
+    // para deixar visualmente claro que aquela miniatura abre um video.
+    document.querySelectorAll(".thumb[data-video]").forEach(thumb=>{
+
+        if(thumb.parentElement.classList.contains("thumb-video-wrap")) return;
+
+        const wrap=document.createElement("span");
+        wrap.className="thumb-video-wrap";
+
+        thumb.parentNode.insertBefore(wrap,thumb);
+        wrap.appendChild(thumb);
+
+        const icon=document.createElement("span");
+        icon.className="thumb-play-icon";
+        icon.innerHTML='<i class="bi bi-play-fill"></i>';
+        wrap.appendChild(icon);
+
+    });
+</script>
+
+<script>
     document.querySelectorAll("[data-galeria]").forEach(galeria=>{
 
     const imagem =
         galeria.querySelector(".imagem-principal-img");
+
+    const video =
+        galeria.querySelector(".imagem-principal-video");
 
     const thumbs =
         galeria.querySelectorAll(".thumb");
@@ -2299,22 +2424,66 @@ function fecharMenuMobile(){
 
     function atualizar(){
 
-        imagem.style.opacity=0;
+        const thumbAtual = thumbs[indice];
 
-        setTimeout(()=>{
-
-            imagem.src=thumbs[indice].src;
-
-            imagem.style.opacity=1;
-
-        },180);
+        const videoSrc = thumbAtual.dataset.video;
 
         thumbs.forEach(t=>t.classList.remove("ativa"));
 
-        thumbs[indice].classList.add("ativa");
+        thumbAtual.classList.add("ativa");
 
         contador.innerHTML=
         `${indice+1} / ${thumbs.length}`;
+
+        if(videoSrc){
+
+            // Miniatura de video: mostra o player e pausa/oculta a imagem
+
+            if(video){
+
+                if(video.getAttribute("src")!==videoSrc){
+
+                    video.pause();
+                    video.src=videoSrc;
+                    video.poster=thumbAtual.src;
+
+                }
+
+                video.style.display="block";
+
+            }
+
+            imagem.style.display="none";
+
+        }else{
+
+            // Miniatura de foto: mostra a imagem e pausa/oculta o video
+
+            if(video && !video.paused){
+
+                video.pause();
+
+            }
+
+            if(video){
+
+                video.style.display="none";
+
+            }
+
+            imagem.style.display="block";
+
+            imagem.style.opacity=0;
+
+            setTimeout(()=>{
+
+                imagem.src=thumbAtual.src;
+
+                imagem.style.opacity=1;
+
+            },180);
+
+        }
 
     }
 
@@ -2406,7 +2575,7 @@ document.querySelectorAll("[data-galeria]").forEach(galeria=>{
 
         const restantes=total-9;
 
-        const nona=thumbs[8];
+        const nona=thumbs[8].closest(".thumb-video-wrap")||thumbs[8];
 
         const wrap=document.createElement("span");
         wrap.className="thumb-mais-wrap";
@@ -2420,7 +2589,8 @@ document.querySelectorAll("[data-galeria]").forEach(galeria=>{
         wrap.appendChild(label);
 
         for(let i=9;i<total;i++){
-            thumbs[i].style.display="none";
+            const item=thumbs[i].closest(".thumb-video-wrap")||thumbs[i];
+            item.style.display="none";
         }
 
     }
