@@ -2526,35 +2526,6 @@ function fecharMenuMobile(){
 });
 
 
-document.querySelectorAll(".imagem-principal").forEach(card=>{
-
-    const img=card.querySelector("img");
-
-    card.addEventListener("mousemove",(e)=>{
-
-        const rect=card.getBoundingClientRect();
-
-        const x=((e.clientX-rect.left)/rect.width)*100;
-
-        const y=((e.clientY-rect.top)/rect.height)*100;
-
-        img.style.transformOrigin=`${x}% ${y}%`;
-
-        img.style.transform="scale(1.18)";
-
-    });
-
-    card.addEventListener("mouseleave",()=>{
-
-        img.style.transformOrigin="center";
-
-        img.style.transform="scale(1)";
-
-    });
-
-});
-
-
 document.querySelectorAll("[data-galeria]").forEach(galeria=>{
 
     const miniaturas=galeria.querySelector(".miniaturas");

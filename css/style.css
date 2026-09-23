@@ -2543,13 +2543,7 @@ MOBILE
 
     object-fit:cover;
 
-    transition:.6s;
-
-}
-
-.imagem-principal:hover img{
-
-    transform:scale(1.05);
+    transition:opacity .35s;
 
 }
 
@@ -3130,8 +3124,7 @@ grid-template-columns:repeat(2,1fr);
 .imagem-principal img{
 
     transition:
-    opacity .35s,
-    transform .6s;
+    opacity .35s;
 
 }
 
