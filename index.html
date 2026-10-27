@@ -31,9 +31,63 @@
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
+<!-- Abertura: decide antes de desenhar a página (evita "piscar") -->
+<script>
+(function(){
+    var d = document.documentElement, tema = null, jaViu = false;
+    try{ tema = localStorage.getItem("temaVincent"); }catch(e){}
+    try{ jaViu = sessionStorage.getItem("thunderIntro") === "1"; }catch(e){}
+    var poucoMovimento = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if(tema !== "claro") d.classList.add("intro-escuro");
+    if(!jaViu && !poucoMovimento) d.classList.add("com-intro");
+})();
+</script>
+
 </head>
 
 <body class="tema-escuro">
+
+<!-- =====================================================
+                ABERTURA DO SITE
+     (logos de Halloween: depois do Halloween, trocar os
+      dois src abaixo pela logo normal)
+====================================================== -->
+<div class="intro" id="intro" aria-hidden="true">
+
+    <div class="intro-lua"></div>
+    <div class="intro-nevoa"></div>
+
+    <div class="intro-morcegos">
+        <span class="intro-morcego"><svg class="hw-bat-svg" viewBox="-4 4 108 36" aria-hidden="true"><path class="hw-wing hw-wing-l" fill="currentColor" d="M50 22 C44 16 34 10 20 10 C12 10 5 14 0 20 Q8 19 10 26 Q15 21 22 25 Q26 20 33 26 Q38 22 44 30 L50 33 Z"/><path class="hw-wing hw-wing-r" fill="currentColor" d="M50 22 C56 16 66 10 80 10 C88 10 95 14 100 20 Q92 19 90 26 Q85 21 78 25 Q74 20 67 26 Q62 22 56 30 L50 33 Z"/><ellipse cx="50" cy="27" rx="4.6" ry="8" fill="currentColor"/><path fill="currentColor" d="M45.5 23 L44.5 12 L48 16.5 L52 16.5 L55.5 12 L54.5 23 Q50 27 45.5 23 Z"/></svg></span>
+        <span class="intro-morcego"><svg class="hw-bat-svg" viewBox="-4 4 108 36" aria-hidden="true"><path class="hw-wing hw-wing-l" fill="currentColor" d="M50 22 C44 16 34 10 20 10 C12 10 5 14 0 20 Q8 19 10 26 Q15 21 22 25 Q26 20 33 26 Q38 22 44 30 L50 33 Z"/><path class="hw-wing hw-wing-r" fill="currentColor" d="M50 22 C56 16 66 10 80 10 C88 10 95 14 100 20 Q92 19 90 26 Q85 21 78 25 Q74 20 67 26 Q62 22 56 30 L50 33 Z"/><ellipse cx="50" cy="27" rx="4.6" ry="8" fill="currentColor"/><path fill="currentColor" d="M45.5 23 L44.5 12 L48 16.5 L52 16.5 L55.5 12 L54.5 23 Q50 27 45.5 23 Z"/></svg></span>
+        <span class="intro-morcego"><svg class="hw-bat-svg" viewBox="-4 4 108 36" aria-hidden="true"><path class="hw-wing hw-wing-l" fill="currentColor" d="M50 22 C44 16 34 10 20 10 C12 10 5 14 0 20 Q8 19 10 26 Q15 21 22 25 Q26 20 33 26 Q38 22 44 30 L50 33 Z"/><path class="hw-wing hw-wing-r" fill="currentColor" d="M50 22 C56 16 66 10 80 10 C88 10 95 14 100 20 Q92 19 90 26 Q85 21 78 25 Q74 20 67 26 Q62 22 56 30 L50 33 Z"/><ellipse cx="50" cy="27" rx="4.6" ry="8" fill="currentColor"/><path fill="currentColor" d="M45.5 23 L44.5 12 L48 16.5 L52 16.5 L55.5 12 L54.5 23 Q50 27 45.5 23 Z"/></svg></span>
+        <span class="intro-morcego"><svg class="hw-bat-svg" viewBox="-4 4 108 36" aria-hidden="true"><path class="hw-wing hw-wing-l" fill="currentColor" d="M50 22 C44 16 34 10 20 10 C12 10 5 14 0 20 Q8 19 10 26 Q15 21 22 25 Q26 20 33 26 Q38 22 44 30 L50 33 Z"/><path class="hw-wing hw-wing-r" fill="currentColor" d="M50 22 C56 16 66 10 80 10 C88 10 95 14 100 20 Q92 19 90 26 Q85 21 78 25 Q74 20 67 26 Q62 22 56 30 L50 33 Z"/><ellipse cx="50" cy="27" rx="4.6" ry="8" fill="currentColor"/><path fill="currentColor" d="M45.5 23 L44.5 12 L48 16.5 L52 16.5 L55.5 12 L54.5 23 Q50 27 45.5 23 Z"/></svg></span>
+        <span class="intro-morcego"><svg class="hw-bat-svg" viewBox="-4 4 108 36" aria-hidden="true"><path class="hw-wing hw-wing-l" fill="currentColor" d="M50 22 C44 16 34 10 20 10 C12 10 5 14 0 20 Q8 19 10 26 Q15 21 22 25 Q26 20 33 26 Q38 22 44 30 L50 33 Z"/><path class="hw-wing hw-wing-r" fill="currentColor" d="M50 22 C56 16 66 10 80 10 C88 10 95 14 100 20 Q92 19 90 26 Q85 21 78 25 Q74 20 67 26 Q62 22 56 30 L50 33 Z"/><ellipse cx="50" cy="27" rx="4.6" ry="8" fill="currentColor"/><path fill="currentColor" d="M45.5 23 L44.5 12 L48 16.5 L52 16.5 L55.5 12 L54.5 23 Q50 27 45.5 23 Z"/></svg></span>
+    </div>
+
+    <div class="intro-centro">
+
+        <div class="intro-logo">
+            <img class="intro-logo-claro" src="img/halloween/logo-halloween-claro.png" alt="">
+            <img class="intro-logo-escuro" src="img/halloween/logo-halloween-escuro.png" alt="">
+            <span class="intro-reflexo"></span>
+        </div>
+
+        <div class="intro-assinatura">
+            <span class="intro-nome">Thunder<b>fish</b></span>
+            <div class="intro-divisor">
+                <i></i>
+                <span></span>
+                <span class="intro-abobora"><svg viewBox="0 0 64 60" aria-hidden="true"><path d="M31 12 C30 6 33 2 38 1 L39 4 C35 5 34 8 35 12 Z" fill="#4c7a2a"/><ellipse cx="17" cy="35" rx="15" ry="20" fill="#ff7a1a"/><ellipse cx="47" cy="35" rx="15" ry="20" fill="#ff7a1a"/><ellipse cx="32" cy="35" rx="16" ry="22" fill="#ff8c2e"/><path class="pk-face" fill="#4a2208" d="M18 30 L24 24 L28 31 Z M36 31 L40 24 L46 30 Z M15 41 Q32 54 49 41 L45 43 L43 47 L39 44 L35 49 L32 45 L29 49 L25 44 L21 47 L19 43 Z"/></svg></span>
+                <i></i>
+            </div>
+            <span class="intro-local">Estaleiro &middot; Itajaí &middot; SC</span>
+        </div>
+
+    </div>
+
+</div>
+
 
 <header class="header">
 
@@ -2128,11 +2182,20 @@ class="btn-orcamento">
 
 <script>
 
-AOS.init({
-    duration:900,
-    once:true,
-    offset:120
-});
+function iniciarAOS(){
+    if(window.__aosIniciado || !window.AOS) return;
+    window.__aosIniciado = true;
+    AOS.init({
+        duration:900,
+        once:true,
+        offset:120
+    });
+}
+
+// Sem abertura: anima normalmente. Com abertura: o script da abertura chama iniciarAOS()
+if(!document.documentElement.classList.contains("com-intro")){
+    iniciarAOS();
+}
 
 </script>
 
@@ -2580,6 +2643,73 @@ document.querySelectorAll("[data-galeria]").forEach(galeria=>{
 
 </script>
 
+<!-- =====================================================
+     ABERTURA DO SITE
+     1. espera a logo carregar (no máx. 1,2s)
+     2. toca a animação (~3,4s)
+     3. dissolve e revela o site
+====================================================== -->
+<script>
+(function(){
+
+    const html  = document.documentElement;
+    const intro = document.getElementById("intro");
+
+    if(!intro) return;
+
+    if(!html.classList.contains("com-intro")){
+        intro.remove();
+        return;
+    }
+
+    try{ sessionStorage.setItem("thunderIntro", "1"); }catch(e){}
+
+    const DURACAO = 3400;   // tempo da animação depois que a logo aparece
+    const LIMITE  = 5200;   // segurança: nunca prende o visitante mais que isso
+    let saiu = false, iniciou = false;
+
+    function sair(){
+        if(saiu) return;
+        saiu = true;
+
+        intro.classList.add("saindo");
+        html.classList.add("intro-revelando");
+        iniciarAOS();
+
+        setTimeout(() => {
+            html.classList.remove("com-intro", "intro-revelando", "intro-pronta");
+            intro.remove();
+            window.dispatchEvent(new Event("introFim"));
+        }, 1500);
+    }
+
+    function comecar(){
+        if(iniciou) return;
+        iniciou = true;
+        requestAnimationFrame(() => html.classList.add("intro-pronta"));
+        setTimeout(sair, DURACAO);
+    }
+
+    const img = intro.querySelector(
+        html.classList.contains("intro-escuro") ? ".intro-logo-escuro" : ".intro-logo-claro"
+    );
+
+    if(img.complete && img.naturalWidth) comecar();
+    else{
+        img.addEventListener("load", comecar, { once:true });
+        img.addEventListener("error", sair, { once:true });
+        setTimeout(comecar, 1200);
+    }
+
+    setTimeout(sair, LIMITE);
+
+    // clique, toque ou tecla pula a abertura
+    intro.addEventListener("click", sair);
+    window.addEventListener("keydown", sair, { once:true });
+
+})();
+</script>
+
 <!-- ============================================================
      LINKS DIRETOS PARA CADA MODELO
      Ex: thunderfish.com.br/#thunder13pes
@@ -2616,6 +2746,9 @@ document.querySelectorAll("[data-galeria]").forEach(galeria=>{
     }
 
     window.addEventListener("hashchange", function(){ irParaModelo(true); });
+
+    // depois da abertura, reposiciona e mostra o brilho no modelo
+    window.addEventListener("introFim", function(){ irParaModelo(false); });
 
 })();
 </script>

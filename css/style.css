@@ -6497,3 +6497,292 @@ body.tema-escuro .accordion summary:hover{
     text-decoration:none;
     cursor:pointer;
 }
+
+
+/* ============================================================
+   ABERTURA DO SITE (mesmo padrão do Vincent Criatório)
+   - aparece 1x por sessão (sessionStorage)
+   - segue o tema salvo (claro / escuro)
+   - clique, toque ou tecla pula a abertura
+   - quem usa "reduzir movimento" não vê
+============================================================ */
+
+@property --intro-raio{
+    syntax:"<percentage>";
+    inherits:false;
+    initial-value:0%;
+}
+
+.intro{ display:none; }
+
+html.com-intro,
+html.com-intro body{ overflow:hidden; }
+
+html.com-intro .intro{
+    --intro-bg:#f4f7f9;
+    --intro-bg-2:#e3e9f5;
+    --intro-glow:rgba(51,51,149,.16);
+    --intro-texto:#333395;
+    --intro-acento:#f4c403;
+    --intro-sub:#5f7480;
+    --intro-linha:rgba(51,51,149,.35);
+    --intro-brilho:rgba(255,255,255,.75);
+
+    position:fixed;
+    inset:0;
+    z-index:10000;
+    display:grid;
+    place-items:center;
+    overflow:hidden;
+    cursor:pointer;
+    background:radial-gradient(ellipse 70% 60% at 50% 42%, var(--intro-bg) 0%, var(--intro-bg-2) 100%);
+    transition:opacity .9s cubic-bezier(.4,0,.2,1), visibility 0s linear .9s;
+}
+
+html.intro-escuro .intro{
+    --intro-bg:#111111;
+    --intro-bg-2:#030303;
+    --intro-glow:rgba(244,196,3,.16);
+    --intro-texto:#ffffff;
+    --intro-acento:#f4c403;
+    --intro-sub:#8a8a8a;
+    --intro-linha:rgba(244,196,3,.45);
+    --intro-brilho:rgba(255,236,160,.55);
+}
+
+.intro::before{
+    content:"";
+    position:absolute;
+    left:50%;
+    top:44%;
+    width:min(760px,120vw);
+    aspect-ratio:1/1;
+    border-radius:50%;
+    background:radial-gradient(circle, var(--intro-glow) 0%, transparent 62%);
+    transform:translate(-50%,-50%) scale(.6);
+    opacity:0;
+    animation:introGlow 2.6s cubic-bezier(.22,1,.36,1) .1s forwards;
+}
+
+.intro::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    pointer-events:none;
+    background:radial-gradient(transparent 55%, rgba(0,0,0,.08) 100%);
+}
+
+html.intro-escuro .intro::after{
+    background:radial-gradient(transparent 45%, rgba(0,0,0,.6) 100%);
+}
+
+.intro-centro{
+    position:relative;
+    z-index:1;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    text-align:center;
+    padding:0 24px;
+    transition:transform 1s cubic-bezier(.4,0,.2,1), opacity .8s, filter .8s;
+}
+
+.intro-logo{
+    position:relative;
+    width:min(430px,78vw);
+    aspect-ratio:1537/1023;
+}
+
+.intro-logo img{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:contain;
+    -webkit-mask-image:radial-gradient(circle at 50% 50%, #000 calc(var(--intro-raio) - 12%), transparent var(--intro-raio));
+            mask-image:radial-gradient(circle at 50% 50%, #000 calc(var(--intro-raio) - 12%), transparent var(--intro-raio));
+    opacity:0;
+    filter:blur(8px);
+    transform:scale(1.05);
+}
+
+.intro-logo .intro-logo-escuro{ display:none; }
+html.intro-escuro .intro-logo .intro-logo-claro{ display:none; }
+html.intro-escuro .intro-logo .intro-logo-escuro{ display:block; }
+
+html.intro-pronta .intro-logo img{
+    animation:introLogo 1.7s cubic-bezier(.22,1,.36,1) forwards;
+}
+
+/* reflexo de luz que passa sobre a logo */
+.intro-reflexo{
+    position:absolute;
+    inset:0;
+    pointer-events:none;
+    -webkit-mask:var(--intro-mask) center/contain no-repeat;
+            mask:var(--intro-mask) center/contain no-repeat;
+    background:linear-gradient(105deg, transparent 38%, var(--intro-brilho) 50%, transparent 62%) 120% 0/260% 100%;
+    opacity:0;
+    mix-blend-mode:soft-light;
+}
+
+html.intro-escuro .intro-reflexo{ mix-blend-mode:screen; }
+
+html.intro-pronta .intro-reflexo{
+    animation:introReflexo 1.5s cubic-bezier(.45,0,.2,1) 1.15s forwards;
+}
+
+.intro-assinatura{
+    margin-top:26px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+
+.intro-nome{
+    font-family:"Outfit",system-ui,sans-serif;
+    font-size:clamp(17px,2.4vw,22px);
+    font-weight:300;
+    letter-spacing:.7em;
+    padding-left:.7em;
+    text-transform:uppercase;
+    color:var(--intro-texto);
+    opacity:0;
+    filter:blur(4px);
+}
+
+.intro-nome b{ font-weight:600; }
+
+html.intro-pronta .intro-nome{
+    animation:introNome 1.4s cubic-bezier(.22,1,.36,1) .95s forwards;
+}
+
+.intro-divisor{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin:16px 0 14px;
+}
+
+.intro-divisor i{
+    width:64px;
+    height:1px;
+    background:linear-gradient(90deg, transparent, var(--intro-linha));
+    transform:scaleX(0);
+    transform-origin:right center;
+}
+
+.intro-divisor i:last-child{
+    background:linear-gradient(90deg, var(--intro-linha), transparent);
+    transform-origin:left center;
+}
+
+.intro-divisor span{
+    width:5px;
+    height:5px;
+    background:var(--intro-acento);
+    transform:rotate(45deg) scale(0);
+}
+
+html.intro-pronta .intro-divisor i{
+    animation:introLinha 1s cubic-bezier(.65,0,.35,1) 1.3s forwards;
+}
+
+html.intro-pronta .intro-divisor span{
+    animation:introLosango .6s cubic-bezier(.34,1.56,.64,1) 1.25s forwards;
+}
+
+.intro-local{
+    font-family:"Outfit",system-ui,sans-serif;
+    font-size:11px;
+    font-weight:500;
+    letter-spacing:.42em;
+    padding-left:.42em;
+    text-transform:uppercase;
+    color:var(--intro-sub);
+    opacity:0;
+    transform:translateY(6px);
+}
+
+html.intro-pronta .intro-local{
+    animation:introLocal .9s ease 1.6s forwards;
+}
+
+/* saída */
+.intro.saindo{
+    opacity:0;
+    visibility:hidden;
+    pointer-events:none;
+}
+
+.intro.saindo .intro-centro{
+    transform:scale(.94) translateY(-10px);
+    opacity:0;
+    filter:blur(6px);
+}
+
+.intro.saindo::before{
+    animation:none;
+    opacity:0;
+    transition:opacity .6s;
+}
+
+html.intro-revelando main{
+    animation:introSite 1.4s cubic-bezier(.22,1,.36,1) both;
+}
+
+html.intro-revelando .header{
+    animation:introHeader 1.1s cubic-bezier(.22,1,.36,1) .25s both;
+}
+
+@keyframes introGlow{
+    to{ opacity:1; transform:translate(-50%,-50%) scale(1); }
+}
+
+@keyframes introLogo{
+    0%  { --intro-raio:0%; opacity:0; filter:blur(8px); transform:scale(1.05); }
+    25% { opacity:1; }
+    99% { filter:blur(0); }
+    100%{ --intro-raio:140%; opacity:1; filter:none; transform:scale(1); -webkit-mask-image:none; mask-image:none; }
+}
+
+@keyframes introReflexo{
+    0%  { opacity:1; background-position:120% 0; }
+    100%{ opacity:1; background-position:-20% 0; }
+}
+
+@keyframes introNome{
+    to{ opacity:1; filter:blur(0); letter-spacing:.42em; padding-left:.42em; }
+}
+
+@keyframes introLinha{ to{ transform:scaleX(1); } }
+@keyframes introLosango{ to{ transform:rotate(45deg) scale(1); } }
+@keyframes introLocal{ to{ opacity:1; transform:none; } }
+
+@keyframes introSite{
+    0%  { opacity:0; transform:scale(1.025); }
+    100%{ opacity:1; transform:none; }
+}
+
+@keyframes introHeader{
+    0%  { opacity:0; transform:translateY(-16px); }
+    100%{ opacity:1; transform:none; }
+}
+
+@media (max-width:700px){
+    .intro-logo{ width:min(330px,82vw); }
+    .intro-assinatura{ margin-top:20px; }
+    .intro-nome{ font-size:15px; }
+    .intro-divisor i{ width:44px; }
+    .intro-local{ font-size:10px; letter-spacing:.34em; }
+}
+
+@media (prefers-reduced-motion:reduce){
+    .intro{ display:none !important; }
+}
+
+/* Elementos de Halloween da abertura ficam escondidos sem o halloween.css */
+.intro-lua,
+.intro-nevoa,
+.intro-morcegos,
+.intro-abobora{ display:none; }
