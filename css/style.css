@@ -6453,3 +6453,47 @@ body.tema-escuro .pronta-entrega-tab{
 body.tema-escuro .accordion summary:hover{
     background:rgba(255,255,255,.06);
 }
+
+/* ============================================================
+   LINKS DIRETOS PARA CADA MODELO (ex: site.com/#thunder13pes)
+   - scroll-margin-top: o cabecalho fixo nao cobre o topo do card
+   - .modelo-destaque: brilho rapido no card aberto pelo link
+============================================================ */
+
+.barco-card[id],
+.pronta-entrega-card[id]{
+    scroll-margin-top:130px;
+}
+
+.modelo-destaque{
+    animation:modeloDestaque 2.4s ease-out 1;
+}
+
+@keyframes modeloDestaque{
+    0%  { box-shadow:0 0 0 0 var(--primary); }
+    25% { box-shadow:0 0 0 6px var(--primary), 0 25px 70px rgba(0,0,0,.18); }
+    100%{ box-shadow:0 0 0 0 transparent, 0 20px 60px rgba(0,0,0,.08); }
+}
+
+@media (max-width:700px){
+    .barco-card[id],
+    .pronta-entrega-card[id]{
+        scroll-margin-top:96px;
+    }
+}
+
+
+/* ============================================================
+   CREDITO DO DESENVOLVEDOR (link discreto, sem cara de link)
+============================================================ */
+
+.footer a.credito-alazo,
+.footer a.credito-alazo:hover,
+.footer a.credito-alazo:visited{
+    display:inline;
+    margin:0;
+    color:inherit;
+    font:inherit;
+    text-decoration:none;
+    cursor:pointer;
+}

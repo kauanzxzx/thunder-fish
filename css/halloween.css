@@ -1,0 +1,386 @@
+/* ============================================================
+   THUNDERFISH — EDIÇÃO HALLOWEEN
+   Tudo que é temático fica neste arquivo + js/halloween.js.
+   Para voltar ao normal depois do Halloween, basta remover:
+     <link rel="stylesheet" href="css/halloween.css">
+     <script src="js/halloween.js"></script>
+   e trocar a logo do hero de volta para logo.jpg.
+
+   Tema claro  -> mantém as cores originais (azul + amarelo).
+   Tema escuro -> o amarelo vira laranja de Halloween.
+============================================================ */
+
+body.tema-escuro{
+    --hw-orange:#ff7a1a;
+    --hw-orange-rgb:255,122,26;
+    --hw-orange-deep:#c4520c;
+    --hw-purple-rgb:120,60,170;
+
+    --primary:var(--hw-orange);
+    --primary-dark:var(--hw-orange-deep);
+    --border-primary:rgba(var(--hw-orange-rgb),.32);
+    --shadow-blue:0 0 35px rgba(var(--hw-orange-rgb),.20);
+}
+
+/* ---------- Fundo com brilho laranja/roxo bem sutil ---------- */
+
+body.tema-escuro::before{
+    background:
+    radial-gradient(circle at 15% 20%, rgba(var(--hw-orange-rgb),.10), transparent 30%),
+    radial-gradient(circle at 85% 40%, rgba(var(--hw-purple-rgb),.10), transparent 30%),
+    radial-gradient(circle at 50% 90%, rgba(var(--hw-orange-rgb),.07), transparent 35%);
+}
+
+body.tema-escuro .hero-blur-1{ background:rgba(var(--hw-orange-rgb),.16); }
+body.tema-escuro .hero-blur-2{ background:rgba(var(--hw-purple-rgb),.18); }
+
+/* ---------- Pontos que estavam com amarelo fixo (#f4c403) ---------- */
+
+body.tema-escuro .parceiro-badge{
+    background:rgba(var(--hw-orange-rgb),.12);
+}
+
+body.tema-escuro .opcionais i,
+body.tema-escuro .opcionais span.selecionado i{
+    color:var(--hw-orange);
+}
+
+body.tema-escuro .opcionais span:hover{
+    background:rgba(var(--hw-orange-rgb),.10);
+}
+
+body.tema-escuro .opcionais span.selecionado{
+    background:rgba(var(--hw-orange-rgb),.14);
+    box-shadow:inset 0 0 0 1px rgba(var(--hw-orange-rgb),.5);
+}
+
+body.tema-escuro .opcionais span:focus-visible{
+    outline-color:var(--hw-orange);
+}
+
+body.tema-escuro .barco-card-lancamento{
+    border:2px solid var(--hw-orange);
+    box-shadow:0 20px 60px rgba(var(--hw-orange-rgb),.22), 0 20px 60px rgba(0,0,0,.35);
+}
+
+body.tema-escuro .badge-lancamento{
+    background:linear-gradient(135deg,#ff7a1a,#ffa64d);
+    color:#1a1a1a;
+    animation-name:hwPulsoLancamento;
+}
+
+@keyframes hwPulsoLancamento{
+    0%,100%{ transform:scale(1);    box-shadow:0 10px 26px rgba(255,122,26,.45); }
+    50%    { transform:scale(1.04); box-shadow:0 12px 32px rgba(255,122,26,.65); }
+}
+
+body.tema-escuro .logo-emblem{
+    background:linear-gradient(145deg,rgba(var(--hw-orange-rgb),.14),rgba(var(--hw-purple-rgb),.12));
+    border-color:rgba(var(--hw-orange-rgb),.38);
+}
+
+body.tema-escuro .logo-bolt{
+    filter:drop-shadow(0 4px 14px rgba(var(--hw-orange-rgb),.35));
+}
+
+body.tema-escuro .nivel-barco{
+    background:linear-gradient(135deg,rgba(var(--hw-orange-rgb),.10),rgba(255,255,255,.025));
+}
+
+body.tema-escuro .nivel-barco::after{
+    background:linear-gradient(90deg,transparent,rgba(var(--hw-orange-rgb),.24),transparent);
+}
+
+body.tema-escuro .nivel-boat.ativo{
+    filter:drop-shadow(0 7px 10px rgba(var(--hw-orange-rgb),.22));
+}
+
+body.tema-escuro .escolher-card:hover .escolher-icon{
+    box-shadow:0 10px 35px rgba(var(--hw-orange-rgb),.35);
+}
+
+body.tema-escuro .btn-outline{
+    color:#fff;
+}
+
+body.tema-escuro .pronta-entrega-tab{
+    animation-name:hwPulsoTab;
+}
+
+@keyframes hwPulsoTab{
+    0%,100%{ box-shadow:-6px 8px 30px rgba(255,122,26,.4); }
+    50%    { box-shadow:-10px 10px 40px rgba(255,122,26,.65); }
+}
+
+@media (max-width:900px){
+    body.tema-escuro .pronta-entrega-tab{
+        animation-name:hwPulsoTabMobile;
+    }
+    @keyframes hwPulsoTabMobile{
+        0%,100%{ box-shadow:0 10px 26px rgba(255,122,26,.4); }
+        50%    { box-shadow:0 14px 34px rgba(255,122,26,.65); }
+    }
+}
+
+
+/* ============================================================
+   LOGO DO HERO — versão clara / escura
+============================================================ */
+
+.hero-logo{
+    width:100%;
+    max-width:560px;
+    height:auto;
+}
+
+.hero-logo-escuro{ display:none; }
+
+body.tema-escuro .hero-logo-claro{ display:none; }
+body.tema-escuro .hero-logo-escuro{ display:block; }
+
+
+/* ============================================================
+   MORCEGO (desenho base, usado em todos os lugares)
+============================================================ */
+
+.hw-bat-svg{
+    display:block;
+    width:100%;
+    height:auto;
+    overflow:visible;
+}
+
+.hw-wing{
+    transform-box:fill-box;
+    animation:hwFlap .32s ease-in-out infinite alternate;
+}
+
+.hw-wing-l{ transform-origin:right center; }
+.hw-wing-r{ transform-origin:left center; animation-name:hwFlapR; }
+
+@keyframes hwFlap { from{ transform:rotate(-14deg); } to{ transform:rotate(26deg);  } }
+@keyframes hwFlapR{ from{ transform:rotate(14deg);  } to{ transform:rotate(-26deg); } }
+
+.hw-bat-eye{ fill:#ffd84d; }
+
+
+/* ============================================================
+   MORCEGUINHOS VOANDO PELA TELA
+   Ficam por cima do conteúdo, mas sem bloquear cliques.
+============================================================ */
+
+.hw-sky{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    overflow:hidden;
+    z-index:60;
+}
+
+.hw-fly{
+    position:absolute;
+    left:0;
+    top:var(--top,30%);
+    width:var(--size,34px);
+    color:#333395;
+    opacity:.32;
+    animation:hwCross var(--dur,30s) linear var(--delay,0s) infinite;
+    will-change:transform;
+}
+
+.hw-fly.reverso{
+    animation-name:hwCrossReverse;
+}
+
+.hw-fly.reverso .hw-bob{
+    transform:scaleX(-1);
+}
+
+.hw-bob{
+    animation:hwBob var(--bob,3.2s) ease-in-out infinite;
+}
+
+body.tema-escuro .hw-fly{
+    color:#4a3562;
+    opacity:.95;
+    filter:drop-shadow(0 0 6px rgba(255,122,26,.25));
+}
+
+@keyframes hwCross{
+    from{ transform:translateX(-12vw); }
+    to  { transform:translateX(112vw); }
+}
+
+@keyframes hwCrossReverse{
+    from{ transform:translateX(112vw); }
+    to  { transform:translateX(-12vw); }
+}
+
+@keyframes hwBob{
+    0%,100%{ translate:0 0; }
+    25%    { translate:0 -26px; }
+    50%    { translate:0 8px; }
+    75%    { translate:0 -14px; }
+}
+
+
+/* ---------- Emblema de Halloween no lugar do raio, ao lado do nome ---------- */
+
+.logo-emblem{ display:none; }
+
+.hw-logo-emblem{
+    display:flex;
+    align-items:center;
+    flex-shrink:0;
+    height:58px;
+    transition:transform .35s ease;
+}
+
+.hw-logo-emblem img{
+    height:100%;
+    width:auto;
+    max-width:none;
+}
+
+.hw-emblema-escuro{ display:none !important; }
+body.tema-escuro .hw-emblema-claro{ display:none !important; }
+body.tema-escuro .hw-emblema-escuro{
+    display:block !important;
+    filter:drop-shadow(0 4px 14px rgba(255,122,26,.22));
+}
+
+.logo:hover .hw-logo-emblem{
+    transform:translateY(-2px) rotate(-3deg) scale(1.05);
+}
+
+.footer .hw-logo-emblem{ height:64px; }
+
+@media (max-width:700px){
+    .hw-logo-emblem{ height:42px; }
+}
+
+
+/* ============================================================
+   ABÓBORAS
+============================================================ */
+
+.hw-pumpkin{
+    display:inline-block;
+    width:var(--pk,40px);
+    flex-shrink:0;
+    transform-origin:50% 100%;
+    animation:hwWobble 5s ease-in-out infinite;
+}
+
+.hw-pumpkin svg{
+    display:block;
+    width:100%;
+    height:auto;
+    overflow:visible;
+}
+
+.hw-pumpkin .pk-face{ fill:#4a2208; }
+
+body.tema-escuro .hw-pumpkin .pk-face{
+    fill:#ffd84d;
+    animation:hwCandle 2.6s ease-in-out infinite;
+}
+
+body.tema-escuro .hw-pumpkin{
+    filter:drop-shadow(0 0 12px rgba(255,122,26,.40));
+}
+
+@keyframes hwWobble{
+    0%,100%{ transform:rotate(-3deg); }
+    50%    { transform:rotate(3deg); }
+}
+
+@keyframes hwCandle{
+    0%,100%{ opacity:1; }
+    40%    { opacity:.75; }
+    55%    { opacity:.95; }
+    70%    { opacity:.7; }
+}
+
+/* Duas abóboras apoiadas no card da imagem do hero */
+.hw-hero-pumpkins{
+    position:absolute;
+    right:26px;
+    bottom:-20px;
+    z-index:6;
+    display:flex;
+    align-items:flex-end;
+    gap:2px;
+    pointer-events:none;
+}
+
+.hw-hero-pumpkins .hw-pumpkin:nth-child(2){
+    animation-delay:-2.5s;
+}
+
+/* Abóbora pequena ao lado dos rótulos de seção */
+.hw-label-pumpkin{
+    --pk:20px;
+    vertical-align:-4px;
+    margin-right:8px;
+    animation:none;
+}
+
+/* Abóbora no canto do CTA */
+.cta-texto{ position:relative; }
+
+.hw-cta-pumpkin{
+    position:absolute;
+    left:22px;
+    bottom:18px;
+    --pk:46px;
+    opacity:.9;
+}
+
+/* Rodapé */
+.hw-footer-line{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    margin-bottom:6px;
+    color:var(--text-secondary);
+    font-weight:700;
+    font-size:.92rem;
+}
+
+.hw-footer-line .hw-pumpkin{
+    --pk:26px;
+}
+
+
+/* ============================================================
+   RESPONSIVO + ACESSIBILIDADE
+============================================================ */
+
+@media (max-width:700px){
+
+    .hw-hero-pumpkins{
+        right:14px;
+        bottom:-16px;
+    }
+
+    .hw-hero-pumpkins .hw-pumpkin{ --pk:34px; }
+
+    .hw-cta-pumpkin{ display:none; }
+
+    .hero-logo{ max-width:100%; }
+
+}
+
+@media (prefers-reduced-motion:reduce){
+
+    .hw-sky{ display:none; }
+
+    .hw-wing,
+    .hw-pumpkin,
+    .hw-pumpkin .pk-face{
+        animation:none !important;
+    }
+
+}
