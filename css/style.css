@@ -6606,9 +6606,6 @@ html.intro-escuro .intro::after{
     transform:scale(1.05);
 }
 
-.intro-logo .intro-logo-escuro{ display:none; }
-html.intro-escuro .intro-logo .intro-logo-claro{ display:none; }
-html.intro-escuro .intro-logo .intro-logo-escuro{ display:block; }
 
 html.intro-pronta .intro-logo img{
     animation:introLogo 1.7s cubic-bezier(.22,1,.36,1) forwards;
@@ -6619,8 +6616,8 @@ html.intro-pronta .intro-logo img{
     position:absolute;
     inset:0;
     pointer-events:none;
-    -webkit-mask:var(--intro-mask) center/contain no-repeat;
-            mask:var(--intro-mask) center/contain no-repeat;
+    -webkit-mask:url("../logo.jpg") center/contain no-repeat;
+            mask:url("../logo.jpg") center/contain no-repeat;
     background:linear-gradient(105deg, transparent 38%, var(--intro-brilho) 50%, transparent 62%) 120% 0/260% 100%;
     opacity:0;
     mix-blend-mode:soft-light;
@@ -6781,8 +6778,233 @@ html.intro-revelando .header{
     .intro{ display:none !important; }
 }
 
-/* Elementos de Halloween da abertura ficam escondidos sem o halloween.css */
-.intro-lua,
-.intro-nevoa,
-.intro-morcegos,
-.intro-abobora{ display:none; }
+
+/* ============================================================
+   LOGO OFICIAL AO LADO DO NOME (cabeçalho e rodapé)
+============================================================ */
+
+.logo-emblem{ display:none; }
+
+.logo-oficial{
+    display:flex;
+    align-items:center;
+    flex-shrink:0;
+    height:58px;
+    transition:transform .35s ease;
+}
+
+.logo-oficial img{
+    height:100%;
+    width:auto;
+    max-width:none;
+}
+
+body.tema-escuro .logo-oficial img{
+    filter:drop-shadow(0 4px 14px rgba(244,196,3,.18));
+}
+
+.logo:hover .logo-oficial{
+    transform:translateY(-2px) rotate(-3deg) scale(1.05);
+}
+
+.footer .logo-oficial{ height:64px; }
+
+@media (max-width:700px){
+    .logo-oficial{ height:42px; }
+}
+
+
+/* ============================================================
+   CARROSSEL DE MODELOS NO CELULAR (mesmo padrão do Vincent)
+   - no computador nada muda: os modelos continuam um embaixo do outro
+   - no celular (até 700px) os modelos viram um carrossel de arrastar,
+     com abas com o nome de cada modelo e pontinhos embaixo
+   - a altura acompanha o modelo que está na tela (sem espaço sobrando)
+============================================================ */
+
+.carrossel-nav,
+.carrossel-dots,
+.carrossel-dica{
+    display:none;
+}
+
+@media (max-width:700px){
+
+    #barcos{ --cg:16px; }
+    #pronta-entrega{ --cg:22px; }
+
+    /* ---------- Abas com o nome dos modelos ---------- */
+
+    .carrossel-nav{
+        display:flex;
+        gap:8px;
+        overflow-x:auto;
+        scrollbar-width:none;
+        margin:0 calc(var(--cg) * -1) 4px;
+        padding:4px var(--cg) 6px;
+        scroll-margin-top:92px;
+        -webkit-mask-image:linear-gradient(90deg,#000 86%,transparent);
+                mask-image:linear-gradient(90deg,#000 86%,transparent);
+    }
+
+    .carrossel-nav::-webkit-scrollbar{ display:none; }
+
+    .carrossel-chip{
+        flex-shrink:0;
+        display:flex;
+        align-items:center;
+        gap:6px;
+        padding:9px 15px;
+        border-radius:999px;
+        border:1px solid var(--border);
+        background:var(--surface);
+        color:var(--text-secondary);
+        font-family:inherit;
+        font-size:13.5px;
+        font-weight:700;
+        white-space:nowrap;
+        cursor:pointer;
+        transition:background-color .3s ease, color .3s ease, border-color .3s ease, box-shadow .3s ease;
+        -webkit-tap-highlight-color:transparent;
+    }
+
+    .carrossel-chip.ativo{
+        background:var(--primary);
+        border-color:var(--primary);
+        color:#fff;
+        box-shadow:var(--shadow-blue);
+    }
+
+    body.tema-escuro .carrossel-chip.ativo{
+        color:#050505;
+    }
+
+    /* ---------- Trilho do carrossel ---------- */
+
+    [data-carrossel]{
+        display:flex !important;
+        align-items:flex-start;
+        gap:14px;
+        overflow-x:auto;
+        overflow-y:hidden;
+        scroll-snap-type:x mandatory;
+        scrollbar-width:none;
+        overscroll-behavior-x:contain;
+        margin:0 calc(var(--cg) * -1);
+        padding:26px var(--cg) 18px;
+        scroll-padding:0 var(--cg);
+        transition:height .45s cubic-bezier(.22,1,.36,1);
+    }
+
+    [data-carrossel]::-webkit-scrollbar{ display:none; }
+
+    [data-carrossel] > .barco-card,
+    [data-carrossel] > .pronta-entrega-card{
+        flex:0 0 86%;
+        min-width:0;
+        width:auto !important;
+        max-width:none !important;
+        margin:0 !important;
+        scroll-snap-align:center;
+        scroll-snap-stop:always;
+    }
+
+    [data-carrossel] > .barco-card:hover,
+    [data-carrossel] > .pronta-entrega-card:hover{
+        transform:none;
+    }
+
+    /* um único modelo ocupa a largura toda */
+    [data-carrossel].unico > *{
+        flex-basis:100%;
+    }
+
+    [data-carrossel] .barco-galeria,
+    [data-carrossel] .barco-info,
+    [data-carrossel] .imagem-principal{
+        min-width:0;
+        max-width:100%;
+    }
+
+    /* miniaturas das fotos em uma linha só (arrasta pro lado) */
+    [data-carrossel] .miniaturas{
+        display:flex !important;
+        flex-wrap:nowrap !important;
+        min-width:0;
+        max-width:100%;
+        gap:8px;
+        padding-bottom:2px;
+        overflow-x:auto;
+        scrollbar-width:none;
+    }
+
+    [data-carrossel] .miniaturas::-webkit-scrollbar{ display:none; }
+
+    [data-carrossel] .miniaturas > *{
+        flex:0 0 62px !important;
+        width:62px !important;
+        height:50px !important;
+    }
+
+    /* ---------- Pontinhos ---------- */
+
+    .carrossel-dots{
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        gap:7px;
+        margin-top:4px;
+    }
+
+    .carrossel-dots button{
+        width:7px;
+        height:7px;
+        padding:0;
+        border:none;
+        border-radius:999px;
+        background:rgba(112,164,189,.35);
+        cursor:pointer;
+        transition:width .35s cubic-bezier(.22,1,.36,1), background-color .35s ease;
+    }
+
+    .carrossel-dots button.ativo{
+        width:22px;
+        background:var(--primary);
+    }
+
+    .carrossel-dica{
+        display:block;
+        text-align:center;
+        margin-top:10px;
+        font-size:12px;
+        font-weight:600;
+        letter-spacing:.3px;
+        color:var(--text-muted);
+    }
+
+}
+
+@media (prefers-reduced-motion:reduce){
+    [data-carrossel]{ transition:none; }
+}
+
+
+/* ============================================================
+   LOGO DO RODAPÉ NO CELULAR
+   A regra do cabeçalho (.logo com max-width:190px e overflow:hidden)
+   também pegava a logo do rodapé e cortava o "Thunderfish".
+   Aqui o rodapé fica livre desse limite.
+============================================================ */
+
+@media (max-width:700px){
+
+    .footer .logo{
+        max-width:none;
+        overflow:visible;
+    }
+
+    .footer .logo-oficial{
+        height:52px;
+    }
+
+}
