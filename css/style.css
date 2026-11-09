@@ -7396,10 +7396,10 @@ body.tema-escuro .hero-bg{
     pointer-events:none;
     background:
         linear-gradient(90deg,
-            rgba(238,241,247,.92) 0%,
-            rgba(238,241,247,.74) 36%,
-            rgba(238,241,247,.28) 64%,
-            rgba(238,241,247,.08) 100%),
+            rgba(238,241,247,.95) 0%,
+            rgba(238,241,247,.86) 40%,
+            rgba(238,241,247,.45) 66%,
+            rgba(238,241,247,.12) 100%),
         linear-gradient(180deg,
             rgba(238,241,247,.55) 0%,
             rgba(238,241,247,0) 22%,
@@ -8584,6 +8584,46 @@ body.tema-escuro .hero-image-card::after{
         bottom:auto;
         font-size:13px;
         padding:9px 14px;
+    }
+
+}
+
+
+/* =====================================================================
+   HERO — LEITURA DO TEXTO SOBRE A FOTO DE FUNDO
+===================================================================== */
+
+body:not(.tema-escuro) .hero-text{
+    color:#262b4a;
+    font-weight:450;
+    text-shadow:0 1px 14px rgba(238,241,247,.95), 0 0 2px rgba(238,241,247,.8);
+}
+
+body.tema-escuro .hero-text{
+    color:#d3d8e4;
+    text-shadow:0 1px 14px rgba(5,7,12,.9);
+}
+
+/* no celular o texto ocupa a tela toda: película uniforme por cima da foto */
+@media (max-width:1050px){
+
+    .hero::before{
+        background:
+            linear-gradient(180deg,
+                rgba(238,241,247,.80) 0%,
+                rgba(238,241,247,.86) 45%,
+                rgba(238,241,247,.70) 75%,
+                var(--lg-bg) 100%);
+    }
+
+    body.tema-escuro .hero::before{
+        background:
+            linear-gradient(180deg,
+                rgba(5,7,12,.74) 0%,
+                rgba(5,7,12,.80) 45%,
+                rgba(5,7,12,.62) 75%,
+                var(--lg-bg) 100%),
+            linear-gradient(0deg, rgba(14,22,60,.30), rgba(14,22,60,.30));
     }
 
 }
