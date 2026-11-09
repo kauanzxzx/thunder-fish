@@ -18,11 +18,9 @@
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
 
-<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
 <link rel="icon" href="favicon.ico">
 
-<link rel="stylesheet"href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
 
 <link rel="stylesheet" href="css/style.css">
 
@@ -49,21 +47,24 @@
 ====================================================== -->
 <div class="intro" id="intro" aria-hidden="true">
 
+    <div class="intro-luz"></div>
 
     <div class="intro-centro">
 
         <div class="intro-logo">
-            <img class="intro-logo-img" src="logo.jpg" alt="">
-            <span class="intro-reflexo"></span>
+            <img class="intro-logo-claro" src="img/logo-claro.webp" alt="">
+            <img class="intro-logo-escuro" src="img/logo-escuro.webp" alt="">
+        </div>
+
+        <div class="intro-horizonte"><i></i></div>
+
+        <div class="intro-agua">
+            <img class="intro-logo-claro" src="img/logo-claro.webp" alt="">
+            <img class="intro-logo-escuro" src="img/logo-escuro.webp" alt="">
         </div>
 
         <div class="intro-assinatura">
             <span class="intro-nome">Thunder<b>fish</b></span>
-            <div class="intro-divisor">
-                <i></i>
-                <span></span>
-                <i></i>
-            </div>
             <span class="intro-local">Estaleiro &middot; Itajaí &middot; SC</span>
         </div>
 
@@ -178,7 +179,8 @@
             </p>
 
             <h2>
-                <img src="logo.jpg" alt="logo-thunderfish">
+                <img class="hero-logo hero-logo-claro" src="img/logo-claro.webp" alt="Thunderfish" width="1200" height="798">
+                <img class="hero-logo hero-logo-escuro" src="img/logo-escuro.webp" alt="Thunderfish" width="1200" height="798">
             </h2>
 
             <p class="hero-text">
@@ -2628,6 +2630,61 @@ document.querySelectorAll("[data-galeria]").forEach(galeria=>{
 </script>
 
 <!-- =====================================================
+     CABEÇALHO: barrinha de progresso da rolagem,
+     cabeçalho mais compacto ao rolar e link da seção atual
+     destacado no menu (mesmo padrão do Vincent Criatório)
+====================================================== -->
+<script>
+(function(){
+
+    const header = document.querySelector(".header");
+    if(!header) return;
+
+    const links = Array.from(document.querySelectorAll(".navegacao a[href^='#']"));
+    const secoes = links
+        .map(a => document.querySelector(a.getAttribute("href")))
+        .filter(Boolean);
+
+    let aguardando = false;
+
+    function atualizar(){
+
+        const y = window.scrollY;
+        const total = document.documentElement.scrollHeight - window.innerHeight;
+
+        header.classList.toggle("rolando", y > 24);
+        header.style.setProperty("--scroll", (total > 0 ? Math.min(100, (y / total) * 100) : 0) + "%");
+
+        // seção que está na tela agora
+        const referencia = y + window.innerHeight * 0.35;
+        let atual = null;
+        secoes.forEach(secao => {
+            const topo = secao.getBoundingClientRect().top + y;
+            if(topo <= referencia) atual = secao.id;
+        });
+
+        links.forEach(a => {
+            a.classList.toggle("ativo", a.getAttribute("href") === "#" + atual);
+        });
+
+        aguardando = false;
+    }
+
+    window.addEventListener("scroll", () => {
+        if(!aguardando){
+            aguardando = true;
+            requestAnimationFrame(atualizar);
+        }
+    }, { passive:true });
+
+    window.addEventListener("resize", atualizar);
+    window.addEventListener("load", atualizar);
+    atualizar();
+
+})();
+</script>
+
+<!-- =====================================================
      ABERTURA DO SITE
      1. espera a logo carregar (no máx. 1,2s)
      2. toca a animação (~3,4s)
@@ -2674,7 +2731,9 @@ document.querySelectorAll("[data-galeria]").forEach(galeria=>{
         setTimeout(sair, DURACAO);
     }
 
-    const img = intro.querySelector(".intro-logo-img");
+    const img = intro.querySelector(
+        html.classList.contains("intro-escuro") ? ".intro-logo .intro-logo-escuro" : ".intro-logo .intro-logo-claro"
+    );
 
     if(img.complete && img.naturalWidth) comecar();
     else{
@@ -2800,6 +2859,9 @@ document.querySelectorAll("[data-galeria]").forEach(galeria=>{
 
         function irPara(i, suave){
             const card = cards[i];
+            // o link #modelo do navegador também rola o carrossel na vertical;
+            // volta ao topo para o selo "Mais vendido" não ficar cortado
+            trilho.scrollTop = 0;
             trilho.scrollTo({
                 left: card.offsetLeft - (trilho.clientWidth - card.offsetWidth) / 2,
                 behavior: suave ? "smooth" : "auto"
